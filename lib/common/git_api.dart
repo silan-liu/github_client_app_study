@@ -1,10 +1,9 @@
-import 'dart:io';
-import 'dart:convert';
 import 'dart:async';
-
+import 'dart:convert';
+import 'dart:io';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import '../index.dart';
 
 class Git {
@@ -68,6 +67,7 @@ class Git {
 
   Future<List<Repo>> getRepos({Map<String, dynamic> queryParameters, refresh = false}) async {
     if (refres) {
+      _options.extra.addAll({"refresh": true, "list": true});
     }
 
     var r = await dio.get<List>(
