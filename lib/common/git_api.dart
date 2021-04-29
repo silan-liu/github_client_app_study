@@ -66,7 +66,7 @@ class Git {
   }
 
   Future<List<Repo>> getRepos({Map<String, dynamic> queryParameters, refresh = false}) async {
-    if (refres) {
+    if (refresh) {
       _options.extra.addAll({"refresh": true, "list": true});
     }
 
@@ -76,6 +76,6 @@ class Git {
       options: _options
     );
 
-    return r.data.map((e) => Repo.fromsJson(e)).toList();
+    return r.data.map((e) => Repo.fromJson(e)).toList();
   }
 }
