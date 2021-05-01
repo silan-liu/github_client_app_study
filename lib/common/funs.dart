@@ -35,3 +35,49 @@ void showToast(String text,
       backgroundColor: Colors.grey[600],
       fontSize: 16);
 }
+
+void showLoading(context, [String text]) {
+  text = text ?? "Loading...";
+
+  showDialog(
+      context: context,
+      builder: (context) {
+        return Center(
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(3),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 10
+                )
+              ]
+            ),
+            padding: EdgeInsets.all(16),
+            margin: EdgeInsets.all(16),
+            constraints: BoxConstraints(minHeight: 120, minWidth: 180),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  width: 30,
+                  height: 30,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 3,
+                  ),
+                ),
+                Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                  child: Text(
+                    text,
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      });
+}
